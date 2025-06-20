@@ -25,17 +25,17 @@ export default function Footer() {
   // Links do mapa do site organizados por categoria
   const siteMapLinks = {
     empresa: [
-      { name: "Sobre Nós", href: "/sobre" },
-      { name: "Nossa Equipe", href: "/equipe" },
-      { name: "Missão e Valores", href: "/missao" },
-      { name: "Carreiras", href: "/carreiras" }
+      { name: "Sobre Nós", href: "/empresa#sobre-nos" },
+      { name: "Nossa Equipe", href: "/empresa#equipe" },
+      { name: "Missão e Valores", href: "/empresa#missao" },
+      { name: "Carreiras", href: "/empresa#carreiras" }
     ],
     servicos: [
-        { name: "Desenvolvimento Web", href: "/services/web-development" },
-        { name: "Aplicativos Mobile", href: "/services/mobile-apps" },
-        { name: "Consultoria Tech", href: "/services/tech-consulting" },
-        { name: "Suporte Técnico", href: "/services/technical-support" }
-      ],
+      { name: "Desenvolvimento Web", href: "/services/web-development" },
+      { name: "Aplicativos Mobile", href: "/services/mobile-apps" },
+      { name: "Consultoria Tech", href: "/services/tech-consulting" },
+      { name: "Suporte Técnico", href: "/services/technical-support" }
+    ],
     recursos: [
       { name: "Blog", href: "/blog" },
       { name: "Cases de Sucesso", href: "/cases" },
@@ -90,7 +90,9 @@ export default function Footer() {
   const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     if (href.includes('#')) {
       const [path, anchor] = href.split('#');
-      if (path === '/services' && window.location.pathname === '/services') {
+      
+      // Se estamos na mesma página, faz scroll suave
+      if (path === window.location.pathname || (path === '/empresa' && window.location.pathname === '/empresa')) {
         e.preventDefault();
         const element = document.getElementById(anchor);
         if (element) {
@@ -100,6 +102,7 @@ export default function Footer() {
           });
         }
       }
+      // Se não estamos na mesma página, deixa o navegador fazer a navegação normal
     }
   };
 
@@ -196,8 +199,8 @@ export default function Footer() {
                 <li key={link.name}>
                   <a
                     href={link.href}
+                    onClick={(e) => handleAnchorClick(e, link.href)}
                     className="text-sm text-neutral-300 hover:text-blue-400 transition-colors duration-300 hover:underline"
-                  
                   >
                     {link.name}
                   </a>
@@ -216,7 +219,6 @@ export default function Footer() {
                 <li key={link.name}>
                   <a
                     href={link.href}
-                    onClick={(e) => handleAnchorClick(e, link.href)}
                     className="text-sm text-neutral-300 hover:text-blue-400 transition-colors duration-300 hover:underline"
                   >
                     {link.name}

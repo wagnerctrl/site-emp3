@@ -120,3 +120,48 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Scroll suave para toda a página */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Responsividade mobile-first */
+@media (max-width: 768px) {
+  /* Evitar scroll horizontal */
+  body {
+    overflow-x: hidden;
+  }
+  
+  /* Ajustar padding em telas pequenas */
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Melhorar legibilidade em mobile */
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.2;
+  }
+  
+  /* Botões mais acessíveis em mobile */
+  button, .btn {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Otimizações para performance */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Melhorar contraste para acessibilidade */
+.text-neutral-600 {
+  color: oklch(0.45 0.016 285.938);
+}
+
+.dark .text-neutral-300 {
+  color: oklch(0.8 0.015 286.067);
+}
